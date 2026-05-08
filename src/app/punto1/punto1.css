@@ -1,0 +1,32 @@
+.card{
+    padding:0px;
+    background-color: #808080;
+}
+img{
+    height: 600px;
+    object-fit: cover;
+}
+.card-body{
+    padding: 60px;
+}
+.btn-slide{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+
+    width: 40px;
+    height: 40px;
+
+    border-radius: 50%;
+    cursor: pointer;
+}
+.izquierda{
+    left: 10px;
+}
+.derecha{
+    right: 10px;
+}
