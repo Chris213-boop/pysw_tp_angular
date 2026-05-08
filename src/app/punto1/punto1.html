@@ -1,0 +1,15 @@
+<div class="container text-center">
+    <div class="card">
+        <button class="btn-slide izquierda" (click)="anterior()">
+            ❮
+        </button>
+        <img src="{{eventos[indice].img}}" class="card-img-top" alt="img">
+        <button class="btn-slide derecha" (click)="siguiente()">
+            ❯
+        </button>
+        <div class="card-body">
+            <h5 class="card-title">{{eventos[indice].nombre}}</h5>
+            <p class="card-text">{{eventos[indice].descripcion}}</p>
+        </div>
+    </div>
+</div>
