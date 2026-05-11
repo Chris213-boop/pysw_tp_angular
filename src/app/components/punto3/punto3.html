@@ -1,0 +1,51 @@
+<div class="container juego-container">
+
+    <h1 class="text-center mb-3">Juego de Memoria</h1>
+
+    <h5 class="text-center">
+        Intentos: {{intentos}}
+    </h5>
+
+    <div class="text-center mb-4">
+        <div class="btn-group flex-column flex-md-row" role="group" >
+            <button class="btn btn-success m-1 btn-lg px-5 py-3"
+                (click)="iniciarJuego()">
+            Iniciar
+        </button>
+
+        <button class="btn btn-danger m-1 btn-lg px-5 py-3"
+                (click)="reiniciarJuego()">
+            Reiniciar
+        </button>
+
+        <button class="btn btn-primary m-1 btn-lg px-5 py-3"
+                (click)="intentar()">
+            Intentar
+        </button>
+        </div>
+
+    </div>
+
+    <div class="row g-3 justify-content-center mx-auto">
+
+        <div class="col-6 col-md-4 col-lg-3"
+             *ngFor="let c of cartas"
+             (click)="seleccionarCarta(c)">
+
+            <div class="carta">
+
+                <div *ngIf="c.volteada" class="contenido-carta">
+                    <img [src]="c.imagen" alt="Carta volteada" class="imagen-carta" />
+                </div>
+
+                <div *ngIf="!c.volteada" class="contenido-carta">
+                    <img src="https://images.vexels.com/media/users/3/131854/isolated/preview/d939c27b70134fa62d08031cca214c29-signo-de-preguntas.png" alt="Signo de interrogacion" class="imagen-carta">
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
