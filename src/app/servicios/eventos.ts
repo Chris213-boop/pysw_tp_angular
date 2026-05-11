@@ -1,13 +1,11 @@
-import { Component } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { Evento } from '../models/evento';
 
-@Component({
-  selector: 'app-punto1',
-  imports: [],
-  templateUrl: './punto1.html',
-  styleUrl: './punto1.css',
+@Injectable({
+  providedIn: 'root',
 })
-export class Punto1 {
-  eventos =[
+export class Eventos {
+  eventos: Evento[] = [
     {
       nombre: "Taller de trompeta",
       descripcion: "Taller para aprender y mejorar la respiracion y tecnica con la trompeta",
@@ -29,20 +27,7 @@ export class Punto1 {
       img: "img/zampoña.jpg"
     }
   ];
-  indice = 0;
-
-  siguiente(){
-    if(this.indice < this.eventos.length -1){
-      this.indice ++;
-    }else{
-      this.indice = 0;
-    }
-  }
-  anterior(){
-    if(this.indice > 0){
-      this.indice --;
-    }else{
-      this.indice = this.eventos.length - 1;
-    }
+  obtenerEventos(): Evento[]{
+    return this.eventos;
   }
 }
