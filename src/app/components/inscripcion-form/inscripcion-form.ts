@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { Inscripcion } from '../../models/inscripcion';
+import { Inscripcion, InscripcionService } from '../../servicios/inscripcion';
+import { Router } from '@angular/router';
+import { OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-inscripcion-form',
@@ -9,13 +11,15 @@ import { Inscripcion } from '../../models/inscripcion';
   templateUrl: './inscripcion-form.html',
   styleUrl: './inscripcion-form.css',
 })
-export class InscripcionFormComponent {
+export class InscripcionFormComponent implements OnInit {
 
   formularioEnviado = false;
 
   total = 0;
 
-  listaInscripciones: Inscripcion[] = [];
+  modoEdicion = false;
+
+  indiceEdicion = -1;
 
   inscripcion: Inscripcion = {
     dni: '',
@@ -25,6 +29,9 @@ export class InscripcionFormComponent {
     email: '',
     curso: ''
   };
+
+  constructor(private inscripcionService: InscripcionService, private router: Router) { }
+
 
   calcularTotal(): void {
     const precio = this.inscripcion.precio;
@@ -56,29 +63,97 @@ export class InscripcionFormComponent {
 
   }
 
-  registrar(formulario: NgForm): void {
+  registrar(
+    formulario: NgForm
+  ): void {
 
-    this.formularioEnviado = true;
+    this.formularioEnviado =
+      true;
 
-    if (formulario.invalid) {
+
+    if (
+      formulario.invalid
+    ) {
+
       return;
+
     }
 
-    const nuevaInscripcion: Inscripcion = {
+
+    const data = {
+
       ...this.inscripcion,
+
       total: this.total
+
     };
 
-    this.listaInscripciones.push(nuevaInscripcion);
 
-    console.log("Inscripción registrada:", nuevaInscripcion);
+    if (
+      this.modoEdicion
+    ) {
 
-    formulario.resetForm();
+      this.inscripcionService
+        .actualizarInscripcion(
 
-    this.total = 0;
+          this.indiceEdicion,
 
-    this.formularioEnviado = false;
+          data
+
+        );
+
+
+      this.inscripcionService
+        .limpiarEdicion();
+
+    }
+
+    else {
+
+      this.inscripcionService
+        .agregarInscripcion(
+          data
+        );
+
+    }
+
+
+    this.router.navigate([
+      '/tabla'
+    ]);
 
   }
 
+  ngOnInit(): void {
+
+    const data =
+
+      this.inscripcionService
+        .getInscripcionEditando();
+
+
+    if (
+      data.inscripcion
+    ) {
+
+      this.inscripcion = {
+
+        ...data.inscripcion
+
+      };
+
+
+      this.indiceEdicion =
+        data.index;
+
+
+      this.modoEdicion =
+        true;
+
+
+      this.calcularTotal();
+
+    }
+
+  }
 }
