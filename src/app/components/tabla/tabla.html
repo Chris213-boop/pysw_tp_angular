@@ -1,4 +1,10 @@
 <div class="container p-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3 class="mb-0">Inscripciones</h3>
+        <button class="btn btn-primary" type="button" (click)="irFormulario()">
+            Inscribirse
+        </button>
+    </div>
     <table class="table table-striped text-center">
     <thead class="table-dark align-middle">
         <tr>
@@ -7,50 +13,58 @@
             <th>Categoria del Alumno</th>
             <th>Total</th>
             <th>Fecha</th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
-        <!--<tr *ngFor="let i of servicio.inscripciones">-->
-        <tr>
-            <!--<td>{{ i.dni }}</td>-->
-            <!--<td>{{ i.curso }}</td>-->
-           <!-- <td>{{ i.categoriaAlumno }}</td>-->
-           <!-- <td>{{ i.total | currency }}</td>-->
-            <!--<td>{{ i.fechaInscripcion | date:'dd/MM/yyyy' }}</td>-->
+        <tr *ngFor="let i of inscripciones; let idx = index">
+            <td>{{ i.dni }}</td>
+            <td>{{ i.curso }}</td>
+            <td>{{ i.categoriaAlumno === '1' ? 'Estudiante' : i.categoriaAlumno === '2' ? 'Egresado' : 'Particular' }}</td>
+            <td>{{ i.total | currency }}</td>
+            <td>{{ i.fechaInscripcion | date:'dd/MM/yyyy' }}</td>
+            <td>
+                <button class="btn btn-sm btn-outline-primary me-2" type="button" (click)="editar(i, idx)">
+                    Editar
+                </button>
+                <button class="btn btn-sm btn-outline-danger" type="button" (click)="eliminar(idx)">
+                    Eliminar
+                </button>
+            </td>
         </tr>
     </tbody>
 </table>
 <h3 class="text-center p-4">Resumen General</h3>
 <div class="row">
     <div class="col-md-3">
-        <div class="card border-sucess">
+        <div class="card border-success">
             <div class="card-body text-center">
-                <h6 class="card-tirtle">Estudiantes</h6>
-                <h2 class="fw-bold">2</h2>
+                <h6 class="card-title">Estudiantes</h6>
+                <h2 class="fw-bold">{{ resumen.estudiantes }}</h2>
             </div>
         </div>
     </div>
     <div class="col-md-3">
-        <div class="card border-sucess">
+        <div class="card border-success">
             <div class="card-body text-center">
-                <h6 class="card-tirtle">Egresados</h6>
-                <h2 class="fw-bold">4</h2>
+                <h6 class="card-title">Egresados</h6>
+                <h2 class="fw-bold">{{ resumen.egresados }}</h2>
             </div>
         </div>
     </div>
     <div class="col-md-3">
-        <div class="card border-sucess">
+        <div class="card border-success">
             <div class="card-body text-center">
-                <h6 class="card-tirtle">Particulares</h6>
-                <h2 class="fw-bold">4</h2>
+                <h6 class="card-title">Particulares</h6>
+                <h2 class="fw-bold">{{ resumen.particulares }}</h2>
             </div>
         </div>
     </div>
     <div class="col-md-3">
-        <div class="card border-sucess">
+        <div class="card border-success">
             <div class="card-body text-center">
-                <h6 class="card-tirtle">Total</h6>
-                <h2 class="fw-bold">10</h2>
+                <h6 class="card-title">Total</h6>
+                <h2 class="fw-bold">{{ resumen.total }}</h2>
             </div>
         </div>
     </div>
