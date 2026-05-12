@@ -4,9 +4,9 @@
             <h3>Formulario de Inscripción</h3>
         </div>
         <div class="card-body">
-            <form class="row g-3 needs-validation" novalidate #formulario="ngForm" (ngSubmit)="registrar(formulario)"
+            <form class="row g-3 needs-validation " novalidate #formulario="ngForm" (ngSubmit)="registrar(formulario)"
                 [class.was-validated]="formularioEnviado">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <label class="form-label">
                         DNI
                     </label>
@@ -15,7 +15,7 @@
                         Ingrese el DNI.
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <label class="form-label">
                         Curso
                     </label>
@@ -24,7 +24,7 @@
                         Ingrese el curso.
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <label class="form-label">
                         Precio
                     </label>
@@ -35,7 +35,7 @@
                         Ingrese el precio.
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <label class="form-label">
                         Categoría del alumno
                     </label>
@@ -58,7 +58,7 @@
                         Seleccione una categoría.
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <label class="form-label">
                         Fecha inscripción
                     </label>
@@ -68,7 +68,7 @@
                         Seleccione una fecha.
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <label class="form-label">
                         Email
                     </label>
@@ -83,9 +83,9 @@
                         $ {{ total }}
                     </div>
                 </div>
-                <div class="col-12">
-                    <button class="btn btn-outline-light w-100" type="submit">
-                        Registrar
+                <div class="col-12 text-center">
+                    <button class="btn btn-outline-light " type="submit">
+                        Registrar<i class="bi bi-pencil-square m-2"></i>
                     </button>
                 </div>
             </form>
