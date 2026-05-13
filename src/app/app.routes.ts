@@ -4,13 +4,25 @@ import { Punto1 } from './components/punto1/punto1';
 import { Punto2Component } from './components/punto2/punto2';
 import { Inscripcion } from './models/inscripcion';
 import { InscripcionFormComponent } from './components/inscripcion-form/inscripcion-form';
+<<<<<<< Updated upstream
 import { InscripcionTablaComponent } from './components/tabla/tabla';
+=======
+import {TablaComponent } from './components/tabla/tabla';
+import { Home } from './components/home/home';
+>>>>>>> Stashed changes
 
 export const routes: Routes = [
     {path: 'punto1', component: Punto1},
     { path: 'punto2', component: Punto2Component },
     {path: 'punto3', component: Punto3Component},
+<<<<<<< Updated upstream
     {path: 'tabla', component: InscripcionTablaComponent},
     {path: 'incripcionForm', component: InscripcionFormComponent},
     { path: '', redirectTo: '/punto1', pathMatch: 'full' }
+=======
+    {path: 'tabla', component: TablaComponent},
+    {path: 'inscripcionForm', component: InscripcionFormComponent},
+    {path: 'home', component: Home},
+    { path: '', redirectTo: '/home', pathMatch: 'full' }
+>>>>>>> Stashed changes
 ];
